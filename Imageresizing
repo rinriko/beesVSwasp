@@ -1,0 +1,17 @@
+install.packages("magick)
+library(magick)
+#path of the images folder
+path="E:/Texas Tech/Fall 2020/R Programing CS5311/Project/kaggle_bee_vs_wasp/bee1"
+
+bees1 <- list.files(path, pattern = "*.jpg", full.names=TRUE)
+b1dataorg <- lapply(bees1, image_read )
+
+print(b1dataorg[1])
+
+#Resized images in b1datasrs
+b1datars<-list()
+
+for (i in 1:2469) {b1datars[[i]] <- image_resize(b1dataorg[[i]], '256x256!')}
+
+print(b1datars[1])
+
