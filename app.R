@@ -5,6 +5,7 @@ sapply(list.files(pattern="[.]R$", path="R/server", full.names=TRUE), source);
 
 # if(interactive()){
   library(shiny)
+  library(shinyFiles)
   library(bs4Dash)
   library(DT)
   library(shinyWidgets)

@@ -6,7 +6,7 @@ DashBoard <- function(){
     sidebar = Sidebar(),
     controlbar = Controlbar(),
     footer = Footer(),
-    title = "Homework2",
+    title = "Project",
     body = Body()
   )
 }

@@ -14,7 +14,9 @@ Body <- function() {
           closable = FALSE,
           bs4TabPanel(
             tabName = "item1",
+            shinyDirButton("directory", "Folder select", "Please select a folder"),
             p("Here is ..."),
+            verbatimTextOutput("directorypath"),
           ),
           bs4TabPanel(
             tabName = "item2",
