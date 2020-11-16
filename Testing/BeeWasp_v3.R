@@ -63,7 +63,7 @@ is_beeVector <- list()
 is_waspVector <- list()
 
 #Loop to filter images of bees and wasps - Version with only n pictures of bees and wasps each
-n = 10
+n = 100
 nbee = 1
 nwasp = 1
 for(i in c(1:nrow(BeeWaspData))){
@@ -106,12 +106,16 @@ imageData <- data.frame(images = rep(NA,nImages),imageVectors = rep(NA,nImages))
 
 for (i in c(1:nImages)){colorIms[[i]] <- array_reshape(colorIms[[i]], c(256, 256, 3))}
 
-trainVars <- NULL
-for (i in c(1:nImages)) {trainVars <- rbind(trainVars, colorIms[[i]])}
+#Slow way to bind images into single vector
+#trainVars <- NULL
+#for (i in c(1:nImages)) {trainVars <- rbind(trainVars, colorIms[[i]])}
 
 #version that preallocates above vector to make more efficient
 trainVars <- matrix(data = NA, nrow = nImages, ncol = 196608, byrow = FALSE, dimnames = NULL)
-for (i in c(1:nImages)) {trainVars[[i]] <- rbind(colorIms[[i]])}
+for (i in c(1:nImages)) {
+  temp <- cbind(colorIms[[i]])
+  trainVars[[i]] <- temp[[1]]
+}
 
 trainCat <- to_categorical(is_beeVector)
 
@@ -120,8 +124,8 @@ trainCat <- to_categorical(is_beeVector)
 # ============================================================================================================
 model <- keras_model_sequential()
 model %>%
-  layer_dense(units = 256, activation = 'relu', input_shape = c(196608)) %>%
-  layer_dense(units = 128, activation = 'relu') %>%
+  layer_dense(units = 768, activation = 'relu', input_shape = c(196608)) %>%
+  layer_dense(units = 256, activation = 'relu') %>%
   layer_dense(units = 2, activation = 'softmax')
 
 summary(model)
