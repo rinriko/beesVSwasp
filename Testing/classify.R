@@ -73,7 +73,7 @@ ctrl <- trainControl(summaryFunction = multiClassSummary,
 # Register a doParallel cluster, using 3/4 (75%) of total CPU-s
 cl <- makeCluster(3/4 * detectCores())
 registerDoParallel(cl)
-model_rf <- caret::train(label ~ . , method = "rf", data = as.matrix(dt_train),
+model_rf <- caret::train(label ~ . , data = as.matrix(dt_train), method = "rf",
                          importance = TRUE, # passed to randomForest()
                          # run CV process in parallel;
                          # see https://stackoverflow.com/a/44774591/5193830

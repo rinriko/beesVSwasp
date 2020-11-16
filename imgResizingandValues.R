@@ -4,12 +4,12 @@ install.packages("imager")
 library(magick)
 #path of the images folder which we want to process
 folderpath="E:/Texas Tech/Fall 2020/R Programing CS5311/Project/kaggle_bee_vs_wasp/bee1"
-
+folderpath = "/Users/minmin/TTU/Programming with R for Data Analysis and Machine Learning/Project/beesVSwasp/Dataset/kaggle_bee_vs_wasp/bee1"
 
 library(imager)
 #Here we took images from bees1 folder of the dataset
 bees1 <- list.files(path=folderpath, pattern = "*.jpg", full.names=TRUE)
-
+bees1
 #Checking memory limnit to process images
 memory.limit()
 
